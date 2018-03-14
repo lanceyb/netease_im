@@ -203,8 +203,8 @@ module NeteaseIM
       post( ACTION_GET_MUTE_GROUP_MEMBERS, { owner: owner, tid: group_id } )
     end
 
-    def send_msg(from, to, body = {}, extra = {}, type = 0, options = {})
-      post( ACTION_SEND_MSG, { from: from, to: to, body: body.to_json, ope: 0, type: type, ext: extra.to_json }.merge(options) )
+    def send_msg(from, to, msg, extra = {}, type = 0, options = {})
+      post( ACTION_SEND_MSG, { from: from, to: to, body: { msg: msg }.to_json, ope: 0, type: type, ext: extra.to_json }.merge(options) )
     end
 
     def send_group_msg(from, group_id, body = {}, extra = {}, options = {})
@@ -212,7 +212,7 @@ module NeteaseIM
     end
 
     def send_batch_msg(from, to, body = {}, extra = {}, type = 0, options = {})
-      post( ACTION_SEND_BATCH_MSG, { from: from, to: to, body: body.to_json, ext: extra.to_json }.merge(options) )
+      post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to, body: body.to_json, ext: extra.to_json }.merge(options) )
     end
 
     def send_batch_custom_msg(from, to, body = {}, extra = {}, options = {}, type = 100)
