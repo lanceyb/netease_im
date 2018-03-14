@@ -222,7 +222,7 @@ module NeteaseIM
     def send_notification(from, to, extra = {}, options = {})
       post( ACTION_SEND_NOTIFICATION, { from: from,
                                         to: to,
-                                        msgtype: 100,
+                                        msgtype: 0,
                                         attach: extra.to_json }.merge(options) )
     end
 
@@ -234,9 +234,8 @@ module NeteaseIM
     end
 
     def send_batch_notication(from, to, extra = {}, options)
-      post( ACTION_SEND_BATCH_NOTIFICATION, { from: from,
-                                              to: to,
-                                              msgtype: 1,
+      post( ACTION_SEND_BATCH_NOTIFICATION, { fromAccid: from,
+                                              toAccids: to,
                                               attach: extra.to_json }.merge(options) )
     end
 
