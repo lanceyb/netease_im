@@ -203,37 +203,37 @@ module NeteaseIM
       post( ACTION_GET_MUTE_GROUP_MEMBERS, { owner: owner, tid: group_id } )
     end
 
-    def send_msg(from, to, msg, extra = {}, type = 0, options = {})
+    def send_msg(from: , to: , msg: , extra: {}, type: 0, options: {})
       post( ACTION_SEND_MSG, { from: from, to: to, body: { msg: msg }.to_json, ope: 0, type: type, ext: extra.to_json }.merge(options) )
     end
 
-    def send_group_msg(from, group_id, body = {}, extra = {}, options = {})
+    def send_group_msg(from: , group_id: , body: {}, extra: {}, options: {})
       post( ACTION_SEND_MSG, { from: from, to: group_id, body: body.to_json, ope: 1, ext: extra.to_json }.merge(options) )
     end
 
-    def send_batch_msg(from, to, body = {}, extra = {}, type = 0, options = {})
+    def send_batch_msg(from: , to: , body: {}, extra: {}, type: 0, options: {})
       post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to.to_json, body: body.to_json, type: type, ext: extra.to_json }.merge(options) )
     end
 
-    def send_batch_custom_msg(from, to, body = {}, extra = {}, options = {}, type = 100)
-      post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to.to_json, body: body.to_json, type: type, ext: extra.to_json }.merge(options) )
+    def send_batch_custom_msg(from: , to: , msg: , extra: {}, options: {})
+      post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to.to_json, body: { msg: msg }.to_json, type: 100, ext: extra.to_json }.merge(options) )
     end
 
-    def send_notification(from, to, extra = {}, options = {})
+    def send_notification(from: , to: , extra: {}, options: {})
       post( ACTION_SEND_NOTIFICATION, { from: from,
                                         to: to,
                                         msgtype: 0,
                                         attach: extra.to_json }.merge(options) )
     end
 
-    def send_group_notification(from, to, extra = {}, options = {})
+    def send_group_notification(from: , to: , extra: {}, options: {})
       post( ACTION_SEND_NOTIFICATION, { from: from,
                                         to: to,
                                         msgtype: 1,
                                         attach: extra.to_json }.merge(options) )
     end
 
-    def send_batch_notication(from, to, extra = {}, options)
+    def send_batch_notication(from: , to: , extra: {}, options: {})
       post( ACTION_SEND_BATCH_NOTIFICATION, { fromAccid: from,
                                               toAccids: to.to_json,
                                               attach: extra.to_json }.merge(options) )
