@@ -212,11 +212,11 @@ module NeteaseIM
     end
 
     def send_batch_msg(from, to, body = {}, extra = {}, type = 0, options = {})
-      post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to, body: body.to_json, ext: extra.to_json }.merge(options) )
+      post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to, body: body.to_json, type: type, ext: extra.to_json }.merge(options) )
     end
 
     def send_batch_custom_msg(from, to, body = {}, extra = {}, options = {}, type = 100)
-      post( ACTION_SEND_BATCH_MSG, { from: from, to: to, body: body.to_json, type: type, ext: extra.to_json }.merge(options) )
+      post( ACTION_SEND_BATCH_MSG, { fromAccid: from, toAccids: to, body: body.to_json, type: type, ext: extra.to_json }.merge(options) )
     end
 
     def send_notification(from, to, extra = {}, options = {})
