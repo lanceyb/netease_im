@@ -6,6 +6,7 @@ module NeteaseIM
     ACTION_ADD_USER = 'user/create.action'
     ACTION_GET_USER = 'user/getUinfos.action'
     ACTION_UPDATE_USER = 'user/updateUinfo.action'
+    ACTION_UPDATE_TOKEN = 'user/update.action'
     ACTION_REFRESH_TOKEN = 'user/refreshToken.action'
 
     ACTION_CREATE_GROUP = 'team/create.action'
@@ -90,6 +91,10 @@ module NeteaseIM
 
     def get_users(user_ids)
       post( ACTION_GET_USER, { accids: user_ids.to_json } )
+    end
+
+    def update_token(user_id, token, props = '')
+      post( ACTION_UPDATE_TOKEN, { accid: user_id, token: token, props: props } )
     end
 
     def refresh_token(user_id)
